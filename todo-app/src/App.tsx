@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
 import "./App.css";
 
 import { mockTaskList } from "./mockData";
@@ -9,6 +9,8 @@ import { mockTaskList } from "./mockData";
 
 const App = () => {
   const [taskList, setTaskList] = React.useState(mockTaskList);
+  const [id, setId] = useState<number>(0);
+  const [task, setTask] = useState<string>("");
 
   const handleClick = () => {
     // (mockTaskList.splice(1));
@@ -27,10 +29,28 @@ const App = () => {
     console.log("works!");
   };
 
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setTask(event.target.value);
+  };
+
+  const addTask = (): void => {
+    const newTask = { id: id, taskName: task };
+    setTaskList([...taskList, newTask]);
+    setTask("");
+  };
+
   return (
     <div>
-      <h1>My Todo List</h1>
+      <h1>Add Tasks</h1>
+      <input
+        type="text"
+        placeholder="task..."
+        value={task}
+        onChange={handleChange}
+      />
+      <button onClick={addTask}> Add </button>
 
+      <h1>My Todo List</h1>
       <ul>
         {taskList.map((task) => (
           <li onClick={handleClick}>{task.taskName}</li>
