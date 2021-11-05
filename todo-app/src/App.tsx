@@ -25,8 +25,8 @@ const App = () => {
     */
 
     console.log("works!");
-    return mockTaskList;
   };
+
   return (
     <div>
       <h1>My Todo List</h1>
