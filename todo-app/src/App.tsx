@@ -29,6 +29,9 @@ const App = () => {
   };
   return (
     <div>
+      <h1>Add Tasks</h1>
+      <input type="text" placeholder="task..." />
+      <button type="submit"> Add </button>
       <h1>My Todo List</h1>
 
       <ul>
