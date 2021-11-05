@@ -50,8 +50,8 @@ const App = () => {
         onChange={handleChange}
       />
       <button onClick={addTask}> Add </button>
-      <h1>My Todo List</h1>
 
+      <h1>My Todo List</h1>
       <ul>
         {taskList.map((task) => (
           <li onClick={handleClick}>{task.taskName}</li>
