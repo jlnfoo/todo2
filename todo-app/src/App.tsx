@@ -10,13 +10,16 @@ import { mockTaskList } from "./mockData";
 const App = () => {
   const [taskList, setTaskList] = React.useState(mockTaskList);
 
+  const handleClick = () => {
+    console.log("works!");
+  };
   return (
     <div>
       <h1>My Todo List</h1>
 
       <ul>
         {taskList.map((task) => (
-          <li>{task.taskName}</li>
+          <li onClick={handleClick}>{task.taskName}</li>
         ))}
       </ul>
     </div>
