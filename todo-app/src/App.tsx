@@ -5,7 +5,6 @@ import { mockTaskList } from "./mockData";
 
 // TODOs
 // 1. send a mock task to the bottom of the list
-// 2. add a new task to the mock list using an input
 
 type MyTask = {
   id?: number; // number | undefined
