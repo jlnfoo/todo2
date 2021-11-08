@@ -5,70 +5,42 @@ import { mockTaskList } from "./mockData";
 
 // TODOs
 // 1. send a mock task to the bottom of the list
-// 2. add a new task to the mock list using an input
 
-// type mockTaskListProps = {
-//   id: number;
-//   taskName: string;
-//   position: number;
-// };
+type MyTask = {
+  id?: number; // number | undefined
+  taskName: string;
+  position?: number;
+  isClicked?: boolean;
+};
 
 const App = () => {
-  const [taskList, setTaskList] = React.useState(mockTaskList);
-  const [id, setId] = useState<number>(0);
-  const [task, setTask] = useState<string>("");
-  const [position, setPosition] = useState<number>(0);
-
-  const handleClick = () => {
-    // mockTaskList.push(mockTaskList.shift());
-    // console.log(mockTaskList);
-
-    // const clickedTask = mockTaskList.shift();
-    // mockTaskList.push(clickedTask);
-    // console.log(mockTaskList);
-
-    //mockTaskList.push(mockTaskList.splice(mockTaskList.indexOf(1), 1)[0]);
-
-    /* ???? Argument of type 'number | undefined' is not assignable to parameter of type 'number'.
-  Type 'undefined' is not assignable to type 'number'.
-    var a = [5,1,2,3,4];
-    a.push(a.shift());
-    console.log(a);
-    */
-
-    console.log("works!");
-  };
-
-  // const handleClick1 = (mockTaskList) => {
-  //   mockTaskList((task, index) => {
-  //     mockTaskList.splice(index, 1);
-  //     mockTaskList.push
-  //   })
-  // }
-
-  //onclick, set position to be the last in array
-  // const handleClick2 = (e: any) => {
-
-  //   if (mockTaskList.position < mockTaskList.length) {
-  //     mockTaskList.splice(e);
-  //     mockTaskList.push;
-  //     return mockTaskList;
-  //   } else {
-  //     return mockTaskList;
-  //   }
-  // setPosition((mockTaskList) => [...taskList]);
-
-  // };
+  const [taskList, setTaskList] = React.useState<MyTask[]>(mockTaskList);
+  const [task, setTask] = useState("");
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setTask(event.target.value);
   };
 
   const addTask = (): void => {
-    const newTask = { id: id, taskName: task, position: position };
+    const newTask = { taskName: task };
     setTaskList([...taskList, newTask]);
     setTask("");
   };
+
+  const handleClick = () => {
+    // 1. find index of obj in array
+    const taskIndex = taskList.findIndex((task) => task.taskName === "foo");
+
+    // 2. remove obj from array
+    const removedTask = taskList.splice(taskIndex, 1);
+    console.log(removedTask);
+    console.log(taskList);
+
+    // 3. push obj to end of array
+    // taskList.push(removedTask); //can't push removedTask as it is an array, need to obtain object first
+  };
+
+  const strikeThrough = () => {};
 
   return (
     <div>
@@ -84,7 +56,14 @@ const App = () => {
       <h1>My Todo List</h1>
       <ul>
         {taskList.map((task) => (
-          <li onClick={handleClick}>{task.taskName}</li>
+          <li
+            onClick={() => {
+              handleClick();
+              strikeThrough();
+            }}
+          >
+            {task.taskName}
+          </li>
         ))}
       </ul>
     </div>
