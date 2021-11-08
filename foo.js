@@ -12,6 +12,7 @@
 
 // const myList = [1,2,3,4,'abcdef', 6, 7, 8, 9];
 // const myHiddenList = ["x", "y", "z", "a", "b"]; // hey, z is in index 2
+
 // const myHiddenList = [55,66,77,88,99,100,101,103,105,107,109,110,111,112,113,222,223,224,225,226]
 
 // when you reach the number 111, console log out "hello world"
@@ -32,8 +33,9 @@
 //   // if i can tell, whether the number is odd or even,
 //   // can i tell, whether the number is equals to 111?
 
-  // if (theCurrentNumber === 111) {
-  //     console.log("hello world")
+
+//   if (theCurrentNumber === 111) {
+//       console.log("hello world")
 //   }
 // }
 

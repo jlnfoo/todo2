@@ -11,6 +11,7 @@ type MyTask = {
   taskName: string;
   position?: number;
   isClicked?: boolean;
+
 };
 
 const App = () => {
@@ -64,6 +65,7 @@ const App = () => {
           >
             {task.taskName}
           </li>
+
         ))}
       </ul>
     </div>
