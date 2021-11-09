@@ -11,7 +11,6 @@ type MyTask = {
   taskName: string;
   position?: number;
   isClicked?: boolean;
-
 };
 
 const App = () => {
@@ -33,15 +32,14 @@ const App = () => {
     const taskIndex = taskList.findIndex((task) => task.taskName === "foo");
 
     // 2. remove obj from array
-    const removedTask = taskList.splice(taskIndex, 1);
+    const removedTask = taskList.splice(taskIndex, 1); //error because what it's doing now is it will always remove index 3 (taskIndex) onClick
+
     console.log(removedTask);
     console.log(taskList);
 
     // 3. push obj to end of array
     // taskList.push(removedTask); //can't push removedTask as it is an array, need to obtain object first
   };
-
-  const strikeThrough = () => {};
 
   return (
     <div>
@@ -57,15 +55,7 @@ const App = () => {
       <h1>My Todo List</h1>
       <ul>
         {taskList.map((task) => (
-          <li
-            onClick={() => {
-              handleClick();
-              strikeThrough();
-            }}
-          >
-            {task.taskName}
-          </li>
-
+          <li onClick={handleClick}>{task.taskName}</li>
         ))}
       </ul>
     </div>
