@@ -10,7 +10,6 @@ type MyTask = {
   id?: number; // number | undefined
   taskName: string;
   position?: number;
-  isClicked?: boolean;
 };
 
 const App = () => {
@@ -32,7 +31,7 @@ const App = () => {
     const taskIndex = taskList.findIndex((task) => task.taskName === "foo");
 
     // 2. remove obj from array
-    const removedTask = taskList.splice(taskIndex, 1); //error because what it's doing now is it will always remove index 3 (taskIndex) onClick
+    const removedTask = taskList.splice(taskIndex, 1);
 
     console.log(removedTask);
     console.log(taskList);
