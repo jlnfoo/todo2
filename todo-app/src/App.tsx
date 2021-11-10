@@ -26,6 +26,11 @@ const App = () => {
     setTask("");
   };
 
+  // for every task in tasklist - map
+  // if index of task we want to remove matches index of task.taskName - how do we identify task we want to remove?
+  // remove task and push/concat to end of list or new list
+  //do we put this whole function in an onClick event?
+
   const handleClick = () => {
     // 1. find index of obj in array
     const taskIndex = taskList.findIndex((task) => task.taskName === "foo");
