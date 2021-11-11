@@ -5,6 +5,20 @@ import { mockTaskList } from "./mockData";
 
 // TODOs
 // 1. send a mock task to the bottom of the list
+// we know that the list is an array
+// array -> .pop(), .push(), .shift(), .unshift() etc.
+// .push() -> append to end of list
+// [ ...array, item ];
+
+// How to add task
+// 1. collect task name from input
+// <input /> -> collect task name from input
+// onChangeHandler -> collect task name from input
+// store task name in state
+// 2. create task object
+// { taskName: task }
+// 3. append task object to existing task list
+// taskList.push(task)
 
 type MyTask = {
   id?: number; // number | undefined
@@ -29,21 +43,23 @@ const App = () => {
 
   //onclick event for adding completed task to completed list
   const addToCompletedList = (taskId: number | undefined) => {
-    const completedList = [...todoList];
+    const cList = [];
+    const taskObj = { taskName: task };
+    for (let i = 0; i < todoList.length; i++) {
+      const allIndex = todoList.map((task) => task.id); //returns array of id - numbers
 
-    for (let i = 0; i < completedList.length; i++) {
-      const allIndex = completedList.map((task) => task.id); //returns array of id - numbers
-      //id(number), taskId (number)
       if (allIndex[i] === taskId) {
-        //filters object with same id as target, returns as array of object
-        const taskMatched = completedList.filter((task) => {
+        const taskMatched = todoList.filter((task) => {
           return task.id === taskId;
         });
-        console.log(taskMatched);
-        completedList.concat(taskMatched);
+
+        const taskMatchedObj = taskMatched.find((task) => task.id === taskId);
+        console.log(taskMatchedObj); //object
+        cList.push(taskMatchedObj);
+        console.log(cList); //array
       }
     }
-    updateCompletedList([...completedList]);
+    updateCompletedList([...completedList, taskObj]);
   };
 
   return (
@@ -66,12 +82,17 @@ const App = () => {
 
       <h1> Completed List</h1>
       <ul>
-        {completedList.map((task) => {
-          <li>{task.taskName}</li>;
-        })}
+        {completedList.map((task) => (
+          <li>{task.taskName}</li>
+        ))}
       </ul>
     </div>
   );
 };
 
 export default App;
+
+/**
+ * src/App.tsx
+  Line 70:35:  Array.prototype.map() expects a return value from arrow function  array-callback-return
+ */
