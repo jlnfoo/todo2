@@ -14,7 +14,7 @@ type MyTask = {
 const App = () => {
   const [todoList, setTodoList] = React.useState<MyTask[]>(mockTaskList);
   const [task, setTask] = useState("");
-  const [completedList, updateCompletedList] = React.useState<MyTask[]>([]);
+  const [completedList, updateCompletedList] = useState([]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setTask(event.target.value);
@@ -28,19 +28,21 @@ const App = () => {
   };
 
   //onclick event for adding completed task to completed list
-  const addToCompletedList = (todoList, taskId: number | undefined) => {
+  const addToCompletedList = (taskId: number | undefined) => {
     const completedList = [...todoList];
-    return completedList.push(taskId);
+    completedList.push(taskId);
+    return completedList;
   };
 
   //onclick event for removing completed task to completed list, and pushing it back to todolist
-  const removeFromCompletedList = (todoList, taskId: number | undefined) => {
+  const removeFromCompletedList = (taskId: number | undefined) => {
     const completedList = [...todoList]; // rest of Task List
-    const taskIndex = todoList.indexOf(taskId); // find index of task
+    const taskIndex = completedList.indexOf(taskId); // find index of task
 
     if (taskIndex >= 0) {
       //if taskIndex of what we want to remove exists,
       const removedTask = completedList.splice(taskIndex, 1); //remove task from list,
+      console.log(removedTask);
       todoList.push(removedTask); //add it back to todo list
       updateCompletedList(completedList); // update completed task list
       setTodoList([...todoList, removedTask]); //update todo list
@@ -61,20 +63,14 @@ const App = () => {
       <h1>My Todo List</h1>
       <ul>
         {todoList.map((task) => (
-          <li onClick={() => addToCompletedList(todoList, task.id)}>
-            {task.taskName}
-          </li>
+          <li onClick={() => addToCompletedList(task.id)}>{task.taskName}</li>
         ))}
       </ul>
 
       <h1> Completed List</h1>
       <ul>
         {completedList.map((task) => {
-          <li
-            onClick={() => {
-              removeFromCompletedList(todoList, task.id);
-            }}
-          >
+          <li onClick={() => removeFromCompletedList(task.id)}>
             {task.taskName}
           </li>;
         })}
