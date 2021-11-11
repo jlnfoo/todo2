@@ -96,3 +96,70 @@ for (let i = 0; i < arr.length; i++) {
     return i; // ignore this
   }
 }
+
+
+// todoList = [
+//   { id: 1, taskName: "hello" },
+//   { id: 2, taskName: "goodbye" },
+//   { id: 3, taskName: "hello & goodbye" },
+//   { id: 4, taskName: "foo" },
+//   { taskName: "foobar" }
+// ];
+
+// task "foobar",
+// { taskName: "foobar" }
+
+// const completedList = [
+//   { id: 1, taskName: "hello" },
+//   { id: 2, taskName: "goodbye" },
+//   { id: 3, taskName: "hello & goodbye" },
+//   { id: 4, taskName: "foo" },
+//   { taskName: "foobar" }
+// ];
+
+// i = 0
+// taskId = 1
+// const allIndex = completedList.map((task) => task.id);
+// const allIndex = [1, 2, 3, 4, undefined];
+// if (allIndex[i] === taskId)
+// if (1 === 1)
+
+// const taskMatched = completedList.filter((task) => {
+//   return task.id === taskId;
+// });
+// const taskMatched = [
+//   { id: 2, taskName: "goodbye" },
+//   { id: 3, taskName: "hello & goodbye" },
+//   { id: 4, taskName: "foo" },
+//   { taskName: "foobar" }
+// ];
+
+// const completedList = [
+//   { id: 1, taskName: "hello" },
+//   { id: 2, taskName: "goodbye" },
+//   { id: 3, taskName: "hello & goodbye" },
+//   { id: 4, taskName: "foo" },
+//   { taskName: "foobar" }
+// ];
+// const taskMatched = [
+//   { id: 2, taskName: "goodbye" },
+//   { id: 3, taskName: "hello & goodbye" },
+//   { id: 4, taskName: "foo" },
+//   { taskName: "foobar" }
+// ];
+// completedList.concat(taskMatched);
+
+// const completedList = [
+//   { id: 1, taskName: "hello" },
+//   { id: 2, taskName: "goodbye" },
+//   { id: 3, taskName: "hello & goodbye" },
+//   { id: 4, taskName: "foo" },
+//   { taskName: "foobar" },
+// [
+//   { id: 2, taskName: "goodbye" },
+//   { id: 3, taskName: "hello & goodbye" },
+//   { id: 4, taskName: "foo" },
+//   { taskName: "foobar" }
+// ]
+// ];
+// completedList.push(taskMatched);
