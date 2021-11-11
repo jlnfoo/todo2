@@ -46,3 +46,34 @@ for (let index = 0; index < myAlphabets.length; index++) {
       console.log('the current value of index is:', index);
     } 
 }
+
+//ADD AND REMOVE TASK. RETURN UPDATED LIST
+
+// 1. create a function to add and remove task - it should take in 2 param (original list and taskName)
+// 2. in each function, declare new const that is an arr that copies the original arraylist (for e.g const newTaskList = [...taskList])
+// 3. For adding : Do a push to this new arr - e.g newTaskList.push(item)
+
+// 4. For removing : create a const called taskIndex = taskList.indexOf(taskName)
+// a. then declare a const that is an arr that copies the original arraylist - e.g anotherTaskList = [...taskList]
+// b. if taskIndex => 0 {anotherTaskList.splice(taskIndex,1) return anotherTaskList}
+
+//5. Wrap all this in an onclick event that takes in id parameter
+//Example:
+/*
+const App = () => {
+  const handleOnClick = (taskId: number) => {
+    // console.log('i cliked on taskId:', taskId);
+  }
+
+  return (
+    <div>
+      <ul>
+        <li onClick={() => handleOnClick(id)}>foo</li>
+        <li>bar</li>
+        <li>baz</li>
+        <li>foobar</li>
+      </ul>
+    </div>
+  )
+}
+*/
