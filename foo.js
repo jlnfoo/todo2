@@ -77,3 +77,22 @@ const App = () => {
   )
 }
 */
+
+
+const arr: number[] = [1, 2, 3, 4, 5];
+// Argument of type 'string' is not assignable to parameter of type 'number'.
+// same complaint, you are trying to pass a target of string into an array of number
+const someIndex = arr.indexOf("hello");
+
+// array.filter
+// array.reduce
+
+const target = "hello";
+for (let i = 0; i < arr.length; i++) {
+  const currentValue = arr[i]; // hover on currentValue -> number
+  // This condition will always return 'false' since the types 'number' and 'string' have no overlap.ts(2367)
+  if (currentValue === target) {
+    // comparing string with number
+    return i; // ignore this
+  }
+}
