@@ -42,7 +42,7 @@ const App = () => {
 
     for (let i = 0; i < taskList.length; i++) {
       if (taskList[i] === taskMatchedObj) {
-        const removedTask = taskList.splice(i, 1); //returns array, only spliced in consolelog though
+        const removedTask = taskList.splice(i, 1); //returns array, only spliced in console though
 
         const removedTaskObj = removedTask.find((task) => task.id === taskId); //obtain object from array
         console.log(removedTaskObj); // output: spliced OBJECT
