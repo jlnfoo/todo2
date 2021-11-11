@@ -43,7 +43,7 @@ const App = () => {
         completedList.concat(taskMatched);
       }
     }
-    updateCompletedList([...completedList]); //IS THE ERROR HERE?
+    updateCompletedList([...completedList]);
   };
 
   // //onclick event for removing completed task to completed list, and pushing it back to todolist
