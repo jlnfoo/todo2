@@ -69,8 +69,6 @@ const App = () => {
     if (taskIndex >= 0) {
       //if taskIndex of what we want to remove exists,
       const removedTask = completedList.splice(taskIndex, 1); //remove task from list,
-
-      //this should be another on click event
       todoList.push(removedTask); //add it back to todo list
       updateCompletedList(completedList); //return updated completed task list
 
