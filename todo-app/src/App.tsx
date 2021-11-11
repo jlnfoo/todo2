@@ -27,13 +27,32 @@ const App = () => {
   };
 
   const handleClick = (taskId: number | undefined) => {
-    const strike = taskList.map((task) => {
+    //1. strikethrough task when clicked
+    const strikedList = taskList.map((task) => {
       //strikethrough task onClick
       return task.id === Number(taskId)
         ? { ...task, complete: !task.complete }
         : { ...task };
     });
-    setTaskList(strike);
+    setTaskList(strikedList);
+
+    //2. remove task
+    const matchedTask = taskList.filter((task) => task.id === taskId); //array of object that matched with clicked task
+    const taskMatchedObj = matchedTask.find((task) => task.id === taskId); //gets obj from array
+
+    for (let i = 0; i < taskList.length; i++) {
+      if (taskList[i] === taskMatchedObj) {
+        const removedTask = taskList.splice(i, 1); //returns array, only spliced in consolelog though
+
+        const removedTaskObj = removedTask.find((task) => task.id === taskId); //obtain object from array
+        console.log(removedTaskObj); // output: spliced OBJECT
+        const updatedList = taskList.concat(removedTask);
+        return updatedList;
+        // const updatedList = taskList.push(removedTaskObj); //why object cannot be pushed into tasklist (arr of objects)???????
+        // console.log(updatedList);
+      }
+    }
+    setTaskList(updatedList);
   };
 
   return (
@@ -61,4 +80,5 @@ const App = () => {
     </div>
   );
 };
+
 export default App;
