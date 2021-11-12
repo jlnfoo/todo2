@@ -47,9 +47,9 @@ const App = () => {
         const removedTaskObj = removedTask.find((task) => task.id === taskId); //obtain object from array
         console.log(removedTaskObj); // output: spliced OBJECT
         const updatedList = taskList.concat(removedTask);
-        return updatedList;
-        // const updatedList = taskList.push(removedTaskObj); //why object cannot be pushed into tasklist (arr of objects)???????
-        // console.log(updatedList);
+        //return updatedList;
+        // const updatedList = taskList.push(removedTaskObj);
+        console.log(updatedList); //returns tasklist with clicked item at bottom - array of objects
       }
     }
     setTaskList(updatedList);
