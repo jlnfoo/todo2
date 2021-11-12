@@ -35,7 +35,7 @@ const App = () => {
     setTask("");
   };
 
-  const handleClick = (taskId: number | undefined) => {
+  const shiftDown = (taskId: number | undefined) => {
     if (taskId === undefined) return;
 
     const newMainList: MyTask[] = [];
@@ -72,7 +72,11 @@ const App = () => {
       <h1>My Todo List</h1>
       <ul>
         {taskList.map((task) => (
-          <li onClick={() => handleClick(task.id)}>{task.taskName}</li>
+          <li>
+            {task.taskName}
+            <button>Up</button>
+            <button onClick={() => shiftDown(task.id)}>Down</button>
+          </li>
         ))}
       </ul>
     </div>
