@@ -27,9 +27,7 @@ const App = () => {
   };
 
   const handleClick = (taskId: number | undefined) => {
-    //1. strikethrough task when clicked
     const strikedList = taskList.map((task) => {
-      //strikethrough task onClick
       return task.id === Number(taskId)
         ? { ...task, complete: !task.complete }
         : { ...task };
