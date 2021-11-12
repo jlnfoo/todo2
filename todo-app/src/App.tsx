@@ -11,6 +11,7 @@ type MyTask = {
 const App = () => {
   const [taskList, setTaskList] = React.useState<MyTask[]>(mockTaskList);
   const [task, setTask] = useState("");
+  const [id, setId] = useState(0);
   const newMainList: MyTask[] = [];
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -18,7 +19,7 @@ const App = () => {
   };
 
   const addTask = (): void => {
-    const newTask = { taskName: task };
+    const newTask = { id: id, taskName: task };
     setTaskList([...taskList, newTask]);
     setTask("");
   };
