@@ -8,6 +8,11 @@ type MyTask = {
   taskName: string;
 };
 
+// what was done
+//1. state of taskList was previously set to mockTaskList, it is now an empty array
+//2. state for id set to 0
+//3. setId added to onClick function at "add task" button
+
 //TO FIX
 // 1. when new items are added to todolist, the todolist arr displayed in console is always short of 1 - the latest added task
 
