@@ -13,11 +13,11 @@ TODO
 
 DONE 1. created completedList state, set to empty arr
 
-MOVE ITEM FROM TODO TO COMPLETED
+SHIFTDOWN - MOVE ITEM FROM TODO TO COMPLETED
 1. when down button is clicked, task will shift from todo list to completed list -> todo list should only have down button
 2. need to update BOTH todo list and completed list
 
-MOVE ITEM FROM COMPLETED TO TODO
+SHIFTUP - MOVE ITEM FROM COMPLETED TO TODO
 1. when up button is clicked, task will shift from completed list to todo list -> completed list should only have up button
 2. need to update BOTH todo list and completed list
 */
