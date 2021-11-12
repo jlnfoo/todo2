@@ -78,33 +78,44 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Add Tasks</h1>
-      <input
-        type="text"
-        placeholder="task..."
-        value={task}
-        onChange={handleChange}
-      />
-      <button
-        onClick={() => {
-          addTask();
-          setId(id + 1);
-        }}
-      >
-        Add
-      </button>
-
-      <h1>My Todo List</h1>
-      <ul>
-        {taskList.map((task) => (
-          <li>
-            {task.taskName}
-            <button onClick={() => shiftUp(task.id)}>Up</button>
-            <button onClick={() => shiftDown(task.id)}>Down</button>
-          </li>
-        ))}
-      </ul>
+    <div className="appContent">
+      <div className="addTask">
+        <h1>Add Task</h1>
+        <input
+          type="text"
+          placeholder="eat homework, walk cat, feed doge...."
+          value={task}
+          onChange={handleChange}
+        />
+        <button
+          className="addBtn btn"
+          onClick={() => {
+            addTask();
+            setId(id + 1);
+          }}
+        >
+          Add to list
+        </button>
+      </div>
+      <div className="todolist">
+        <h2>Todo List</h2>
+        <ul>
+          {taskList.map((task) => (
+            <li>
+              {task.taskName}
+              <button className="shiftBtn btn" onClick={() => shiftUp(task.id)}>
+                Up
+              </button>
+              <button
+                className="shiftBtn btn"
+                onClick={() => shiftDown(task.id)}
+              >
+                Down
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
