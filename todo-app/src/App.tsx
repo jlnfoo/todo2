@@ -72,12 +72,7 @@ const App = () => {
       <h1>My Todo List</h1>
       <ul>
         {taskList.map((task) => (
-          <li
-            onClick={() => handleClick(task.id)}
-            className={task.complete ? "task strike" : "task"}
-          >
-            {task.taskName}
-          </li>
+          <li onClick={() => handleClick(task.id)}>{task.taskName}</li>
         ))}
       </ul>
     </div>
