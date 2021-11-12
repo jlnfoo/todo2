@@ -6,6 +6,15 @@ import { mockTaskList } from "./mockData";
 // TODOs
 // 1. send a mock task to the bottom of the list
 
+/**
+ * export const mockTaskList = [
+    { id: 1, taskName: "hello", complete: false },
+    { id: 2, taskName: "goodbye", complete: false},
+    { id: 3, taskName: "hello & goodbye", complete: false },
+    { id: 4, taskName: "foo" , complete: false}
+  ];
+ */
+
 type MyTask = {
   id?: number; // number | undefined
   taskName: string;
@@ -27,13 +36,26 @@ const App = () => {
   };
 
   const handleClick = (taskId: number | undefined) => {
-    const strike = taskList.map((task) => {
-      //strikethrough task onClick
-      return task.id === Number(taskId)
-        ? { ...task, complete: !task.complete }
-        : { ...task };
-    });
-    setTaskList(strike);
+    if (taskId === undefined) return;
+
+    const newMainList: MyTask[] = [];
+    let removedItem;
+
+    for (let i = 0; i < taskList.length; i++) {
+      const myCurrentTask = taskList[i];
+
+      if (myCurrentTask.id === taskId) {
+        removedItem = myCurrentTask;
+      } else {
+        newMainList.push(myCurrentTask);
+      }
+    }
+
+    if (removedItem) {
+      newMainList.push(removedItem);
+    }
+
+    setTaskList(newMainList);
   };
 
   return (
@@ -61,4 +83,5 @@ const App = () => {
     </div>
   );
 };
+
 export default App;

@@ -1,48 +1,61 @@
-/**
- * How can we do this - sending a task to the bottom of the list?
- * const myList = [X, X, X, X, X]; // confirm got a number 3
- *
- * 1. find the index of the one you want to remove, do we remove the item?
- *    a. find the index of the item
- *    b. take the item out
- *    c. put the item to the end
- *
- *  if (myList.indexOf())
- */
+// const matchedTask = taskList.filter((task) => task.id === taskId); //array of object that matched with clicked task
+// const taskMatchedObj = matchedTask.find((task) => task.id === taskId); //gets obj from array
 
-// const myList = [1,2,3,4,'abcdef', 6, 7, 8, 9];
-// const myHiddenList = ["x", "y", "z", "a", "b"]; // hey, z is in index 2
-const myHiddenList = [55,66,77,88,99,100,101,103,105,107,109,110,111,112,113,222,223,224,225,226]
+const mockTaskList = [
+  { id: 1, taskName: "hello", complete: false },
+  { id: 2, taskName: "goodbye", complete: false},
+  { id: 3, taskName: "hello & goodbye", complete: false },
+  { id: 4, taskName: "foo" , complete: false}
+];
 
-// when you reach the number 111, console log out "hello world"
-// otherwise, console log out the number
+// Array.prototype.filter()
+// The filter() method creates a new array with all elements that pass the test implemented by the provided function.
 
-// for (let index =0; index < myHiddenList.length; index++) {
-//   const theCurrentNumber = myHiddenList[index];
+// The find() method returns the value of the first element in the provided array that satisfies the provided testing function. If no values satisfy the testing function, undefined is returned. 
 
-//   // we need to console log "even" when the number is even
-//   // we need to console log "odd" when the number is odd
-
-//   if (theCurrentNumber %2 === 0) {
-//       console.log("this is an even number")
-//   } else {
-//       console.log("this is an odd number")
+//matchedTask.find((task) => task.id === taskId);
+// const myFind = (taskList, targetTaskId) => {
+//   for (let i = 0; i < taskList.length; i++) {
+//     const currentTask = taskList[i];
+//     if (currentTask.id === targetTaskId) {
+//       return currentTask;
+//     }
 //   }
 
-//   // if i can tell, whether the number is odd or even,
-//   // can i tell, whether the number is equals to 111?
-
-//   if (theCurrentNumber === 111) {
-//       console.log("hello world")
-//   }
+//   return undefined;
 // }
 
-const myAlphabets = ["x", "y", "z", "a", "b"];
+const taskId = 3;
 
-// can we console log out "i have found the item i want to remove" when the alphabet is "z"?
-// have i found the index of "z"?
-for (let index = 0; index < myAlphabets.length; index++) {
-    if (myAlphabets[index] === "z") {
-      console.log('the current value of index is:', index);
-    } 
+// FILTER ANSWER:
+const yourVersion = [];
+
+for (let i=0; i <mockTaskList.length; i++) {
+  const myCurrentTask = mockTaskList[i]; // 1
+  if (myCurrentTask.id === taskId) { // 2
+    yourVersion.push(mockTaskList[i]);
+  }
 }
+
+// const filteredVersion = mockTaskList.filter((task) => task.id === taskId);
+// console.log('filterVersion:', filteredVersion);
+// console.log('yourVersion:', yourVersion);
+
+// your answer:
+
+// yourFindVersion = {}
+let yourFindVersion = undefined;
+for (let i = 0; i < yourVersion.length; i++) {
+  const currentTask = yourVersion[i]; // 1
+  if (currentTask.id === taskId) { // 2
+    yourFindVersion = currentTask;
+    break;
+  }
+}
+
+const findVersion = yourVersion.find((task) => task.id === taskId);
+console.log('findVersion', findVersion);
+
+// yourFindVersion
+const yourFindVersion = myFind(yourVersion, taskId);
+console.log('yourFindVersion', yourFindVersion);
