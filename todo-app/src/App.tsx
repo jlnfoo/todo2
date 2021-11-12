@@ -6,7 +6,6 @@ import { mockTaskList } from "./mockData";
 type MyTask = {
   id?: number; // number | undefined
   taskName: string;
-  complete?: boolean;
 };
 
 const App = () => {
