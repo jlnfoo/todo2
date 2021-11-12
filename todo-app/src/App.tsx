@@ -42,17 +42,23 @@ const App = () => {
 
     for (let i = 0; i < taskList.length; i++) {
       if (taskList[i] === taskMatchedObj) {
+        console.log(taskList[i]); //{id: 2, taskName: 'goodbye', complete: false}
+        console.log(taskMatchedObj); // {id: 2, taskName: 'goodbye', complete: false}
         const removedTask = taskList.splice(i, 1); //returns array
+        console.log(removedTask); //[{id: 2, taskName: 'goodbye', complete: false}]
 
         const removedTaskObj = removedTask.find((task) => task.id === taskId); //obtain object from array
-        console.log(removedTaskObj); // output: spliced OBJECT
+        console.log(removedTaskObj); // {id: 2, taskName: 'goodbye', complete: false}
         const updatedList = taskList.concat(removedTask);
-        //return updatedList;
+        // return updatedList;
         // const updatedList = taskList.push(removedTaskObj);
         console.log(updatedList); //returns tasklist with clicked item at bottom - array of objects
+        /* [{id: 1, taskName: 'hello', complete: false}, {id: 3, taskName: 'hello & goodbye', complete: false}, {id: 4, taskName: 'foo', complete: false}, ˆ{id: 2, taskName: 'goodbye', complete: false}]
+         */
       }
+      // put this in a map to display list......
     }
-    setTaskList(updatedList);
+    // setTaskList(strikedList);
   };
 
   return (
