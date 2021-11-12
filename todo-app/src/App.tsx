@@ -8,18 +8,25 @@ type MyTask = {
   taskName: string;
 };
 
-// what was done
-//1. state of taskList was previously set to mockTaskList, it is now an empty array
-//2. state for id set to 0
-//3. setId added to onClick function at "add task" button
+/*
+TODO
 
-//TO FIX
-// 1. when new items are added to todolist, the todolist arr displayed in console is always short of 1 - the latest added task
+DONE 1. created completedList state, set to empty arr
+
+MOVE ITEM FROM TODO TO COMPLETED
+1. when down button is clicked, task will shift from todo list to completed list -> todo list should only have down button
+2. need to update BOTH todo list and completed list
+
+MOVE ITEM FROM COMPLETED TO TODO
+1. when up button is clicked, task will shift from completed list to todo list -> completed list should only have up button
+2. need to update BOTH todo list and completed list
+*/
 
 const App = () => {
   const [taskList, setTaskList] = React.useState<MyTask[]>([]);
   const [task, setTask] = useState("");
   const [id, setId] = useState(0);
+  const [completedList, setCompletedList] = React.useState<MyTask[]>([]);
   const newMainList: MyTask[] = [];
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -104,6 +111,13 @@ const App = () => {
             <button onClick={() => shiftDown(task.id)}>Down</button>
           </li>
         ))}
+      </ul>
+
+      <h1>Completed List</h1>
+      <ul>
+        {completedList.map((task) => {
+          <li>{task.taskName}</li>;
+        })}
       </ul>
     </div>
   );
