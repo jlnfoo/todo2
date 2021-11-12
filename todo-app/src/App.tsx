@@ -6,6 +6,15 @@ import { mockTaskList } from "./mockData";
 // TODOs
 // 1. send a mock task to the bottom of the list
 
+/**
+ * export const mockTaskList = [
+    { id: 1, taskName: "hello", complete: false },
+    { id: 2, taskName: "goodbye", complete: false},
+    { id: 3, taskName: "hello & goodbye", complete: false },
+    { id: 4, taskName: "foo" , complete: false}
+  ];
+ */
+
 type MyTask = {
   id?: number; // number | undefined
   taskName: string;
@@ -27,35 +36,26 @@ const App = () => {
   };
 
   const handleClick = (taskId: number | undefined) => {
-    const strikedList = taskList.map((task) => {
-      return task.id === Number(taskId)
-        ? { ...task, complete: !task.complete }
-        : { ...task };
-    });
-    setTaskList(strikedList);
+    if (taskId === undefined) return;
 
-    //2. remove task
-    const matchedTask = taskList.filter((task) => task.id === taskId); //array of object that matched with clicked task
-    const taskMatchedObj = matchedTask.find((task) => task.id === taskId); //gets obj from array
+    const newMainList: MyTask[] = [];
+    let removedItem;
 
     for (let i = 0; i < taskList.length; i++) {
-      if (taskList[i] === taskMatchedObj) {
-        console.log(taskList[i]); //{id: 2, taskName: 'goodbye', complete: false}
-        console.log(taskMatchedObj); // {id: 2, taskName: 'goodbye', complete: false}
-        const removedTask = taskList.splice(i, 1); //returns array
-        console.log(removedTask); //[{id: 2, taskName: 'goodbye', complete: false}]
+      const myCurrentTask = taskList[i];
 
-        const removedTaskObj = removedTask.find((task) => task.id === taskId); //obtain object from array
-        console.log(removedTaskObj); // {id: 2, taskName: 'goodbye', complete: false}
-        const updatedList = taskList.concat(removedTask);
-        // return updatedList;
-        // const updatedList = taskList.push(removedTaskObj);
-        console.log(updatedList); //returns tasklist with clicked item at bottom - array of objects
-        /* [{id: 1, taskName: 'hello', complete: false}, {id: 3, taskName: 'hello & goodbye', complete: false}, {id: 4, taskName: 'foo', complete: false}, ˆ{id: 2, taskName: 'goodbye', complete: false}]
-         */
+      if (myCurrentTask.id === taskId) {
+        removedItem = myCurrentTask;
+      } else {
+        newMainList.push(myCurrentTask);
       }
     }
-    // setTaskList(strikedList);
+
+    if (removedItem) {
+      newMainList.push(removedItem);
+    }
+
+    setTaskList(newMainList);
   };
 
   return (
