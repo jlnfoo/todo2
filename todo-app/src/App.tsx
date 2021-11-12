@@ -8,8 +8,16 @@ type MyTask = {
   taskName: string;
 };
 
+// what was done
+//1. state of taskList was previously set to mockTaskList, it is now an empty array
+//2. state for id set to 0
+//3. setId added to onClick function at "add task" button
+
+//TO FIX
+// 1. when new items are added to todolist, the todolist arr displayed in console is always short of 1 - the latest added task
+
 const App = () => {
-  const [taskList, setTaskList] = React.useState<MyTask[]>(mockTaskList);
+  const [taskList, setTaskList] = React.useState<MyTask[]>([]);
   const [task, setTask] = useState("");
   const [id, setId] = useState(0);
   const newMainList: MyTask[] = [];
@@ -22,10 +30,11 @@ const App = () => {
     const newTask = { id: id, taskName: task };
     setTaskList([...taskList, newTask]);
     setTask("");
+    console.log(taskList); //when new tasks are added, the latest task obj is not displayed
   };
 
   const shiftDown = (taskId: number | undefined) => {
-    if (taskId === undefined) return;
+    // if (taskId === undefined) return;
     let removedItem;
 
     //loop through objects in taskList
@@ -51,7 +60,7 @@ const App = () => {
   };
 
   const shiftUp = (taskId: number | undefined) => {
-    if (taskId === undefined) return;
+    // if (taskId === undefined) return;
     let removed;
 
     for (let j = 0; j < taskList.length; j++) {
@@ -77,7 +86,14 @@ const App = () => {
         value={task}
         onChange={handleChange}
       />
-      <button onClick={addTask}> Add </button>
+      <button
+        onClick={() => {
+          addTask();
+          setId(id + 1);
+        }}
+      >
+        Add
+      </button>
 
       <h1>My Todo List</h1>
       <ul>
