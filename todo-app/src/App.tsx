@@ -39,6 +39,7 @@ const App = () => {
     const newTask = { id: id, taskName: task };
     setTaskList([...taskList, newTask]);
     setTask("");
+    setId(id + 1);
     console.log(taskList); //when new tasks are added, the latest task obj is not displayed
   };
 
@@ -56,17 +57,22 @@ const App = () => {
       if (myCurrentTask.id === taskId) {
         //give that object a new var name
         removedItem = myCurrentTask;
+        console.log(myCurrentTask);
       } else {
         //if id of object doesnt match taskId, push that object to newMainList
         newMainList.push(myCurrentTask);
+        console.log(newMainList);
       }
     }
-    // if object matches taskId, we give it a new var name of removedItem, then push this removedItem to end of newMainList
+    setTaskList(newMainList);
+
+    // if object matches taskId, we give it a new var name of removedItem, then push this removedItem to completedList
     if (removedItem) {
-      newMainList.push(removedItem);
+      completedList.push(removedItem);
+      console.log(completedList);
     }
 
-    setTaskList(newMainList);
+    setCompletedList(completedList); //is this part wrong? completedlist returns removed item in console but does not display on the app
   };
 
   //completed -> todo
@@ -100,7 +106,6 @@ const App = () => {
       <button
         onClick={() => {
           addTask();
-          setId(id + 1);
         }}
       >
         Add
