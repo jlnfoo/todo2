@@ -105,6 +105,8 @@ const App = () => {
           <li>
             {task.taskName}
             <button onClick={() => shiftDown(task.id)}>Down</button>
+            <button onClick={() => shiftDown(task.id)}>Down</button>
+            <button onClick={() => shiftDown(task.id)}>Down</button>
           </li>
         ))}
       </ul>
@@ -114,6 +116,8 @@ const App = () => {
         {completedList.map((task) => (
           <li>
             {task.taskName}
+            <button onClick={() => shiftUp(task.id)}>Up</button>
+            <button onClick={() => shiftUp(task.id)}>Up</button>
             <button onClick={() => shiftUp(task.id)}>Up</button>
           </li>
         ))}
