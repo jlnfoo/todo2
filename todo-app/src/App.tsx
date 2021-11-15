@@ -29,8 +29,12 @@ const App = () => {
     console.log(taskList); //when new tasks are added, the latest task obj is not displayed
   };
 
+  const shiftUpList = (taskId: number | undefined) => {};
+
+  const shiftDownList = (taskId: number | undefined) => {};
+
   //todo -> completed
-  const shiftDown = (taskId: number | undefined) => {
+  const shiftToComplete = (taskId: number | undefined) => {
     const newMainList: MyTask[] = [];
 
     // if (taskId === undefined) return;
@@ -61,7 +65,7 @@ const App = () => {
   };
 
   //completed -> todo
-  const shiftUp = (taskId: number | undefined) => {
+  const shiftToTodo = (taskId: number | undefined) => {
     const newCompletedList: MyTask[] = [];
 
     // if (taskId === undefined) return;
@@ -110,21 +114,21 @@ const App = () => {
               {task.taskName}
               <button
                 className="shiftBtn btn"
-                onClick={() => shiftDown(task.id)}
+                onClick={() => shiftUpList(task.id)}
               >
-                Down
+                Shift Task Up
               </button>
               <button
                 className="shiftBtn btn"
-                onClick={() => shiftDown(task.id)}
+                onClick={() => shiftDownList(task.id)}
               >
-                Down
+                Shift Task Down
               </button>
               <button
                 className="shiftBtn btn"
-                onClick={() => shiftDown(task.id)}
+                onClick={() => shiftToComplete(task.id)}
               >
-                Down
+                Mark as complete
               </button>
             </li>
           ))}
@@ -137,14 +141,23 @@ const App = () => {
           {completedList.map((task) => (
             <li>
               {task.taskName}
-              <button className="shiftBtn btn" onClick={() => shiftUp(task.id)}>
-                Up
+              <button
+                className="shiftBtn btn"
+                onClick={() => shiftUpList(task.id)}
+              >
+                Shift Task Up
               </button>
-              <button className="shiftBtn btn" onClick={() => shiftUp(task.id)}>
-                Up
+              <button
+                className="shiftBtn btn"
+                onClick={() => shiftDownList(task.id)}
+              >
+                Shift Task Down
               </button>
-              <button className="shiftBtn btn" onClick={() => shiftUp(task.id)}>
-                Up
+              <button
+                className="shiftBtn btn"
+                onClick={() => shiftToTodo(task.id)}
+              >
+                Incomplete?
               </button>
             </li>
           ))}
