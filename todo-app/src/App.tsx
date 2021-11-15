@@ -6,6 +6,11 @@ type MyTask = {
   taskName: string;
 };
 
+// Each tasks will have 3 buttons
+// - send to bottom of current list
+// - send to top of current list
+// - mark as completed or incomplete - if completed - goes to completed list, if incomplete goes back todo list
+
 const App = () => {
   const [taskList, setTaskList] = React.useState<MyTask[]>([]);
   const [task, setTask] = useState("");
