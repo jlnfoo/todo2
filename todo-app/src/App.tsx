@@ -44,7 +44,7 @@ const App = () => {
         updatedTodoList.push(myCurrentTask);
       }
     }
-
+    //
     if (removedItem) {
       updatedTodoList.push(removedItem);
     }
