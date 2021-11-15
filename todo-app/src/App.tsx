@@ -29,9 +29,46 @@ const App = () => {
     console.log(taskList); //when new tasks are added, the latest task obj is not displayed
   };
 
-  const shiftUpList = (taskId: number | undefined) => {};
+  const shiftUpTodoList = (taskId: number | undefined) => {};
+  const shiftUpCompletedList = (taskId: number | undefined) => {};
 
-  const shiftDownList = (taskId: number | undefined) => {};
+  const shiftDownTodoList = (taskId: number | undefined) => {
+    const updatedTodoList: MyTask[] = [];
+
+    let removedItem;
+    for (let i = 0; i < taskList.length; i++) {
+      const myCurrentTask = taskList[i];
+      if (myCurrentTask.id === taskId) {
+        removedItem = myCurrentTask;
+      } else {
+        updatedTodoList.push(myCurrentTask);
+      }
+    }
+
+    if (removedItem) {
+      updatedTodoList.push(removedItem);
+    }
+    setTaskList(updatedTodoList);
+  };
+
+  const shiftDownCompletedList = (taskId: number | undefined) => {
+    const updatedCompletedList: MyTask[] = [];
+
+    let removedItem;
+    for (let i = 0; i < completedList.length; i++) {
+      const myCurrentTask = completedList[i];
+      if (myCurrentTask.id === taskId) {
+        removedItem = myCurrentTask;
+      } else {
+        updatedCompletedList.push(myCurrentTask);
+      }
+    }
+
+    if (removedItem) {
+      updatedCompletedList.push(removedItem);
+    }
+    setCompletedList(updatedCompletedList);
+  };
 
   //todo -> completed
   const shiftToComplete = (taskId: number | undefined) => {
@@ -114,13 +151,13 @@ const App = () => {
               {task.taskName}
               <button
                 className="shiftBtn btn"
-                onClick={() => shiftUpList(task.id)}
+                onClick={() => shiftUpTodoList(task.id)}
               >
                 Shift Task Up
               </button>
               <button
                 className="shiftBtn btn"
-                onClick={() => shiftDownList(task.id)}
+                onClick={() => shiftDownTodoList(task.id)}
               >
                 Shift Task Down
               </button>
@@ -143,13 +180,13 @@ const App = () => {
               {task.taskName}
               <button
                 className="shiftBtn btn"
-                onClick={() => shiftUpList(task.id)}
+                onClick={() => shiftUpCompletedList(task.id)}
               >
                 Shift Task Up
               </button>
               <button
                 className="shiftBtn btn"
-                onClick={() => shiftDownList(task.id)}
+                onClick={() => shiftDownCompletedList(task.id)}
               >
                 Shift Task Down
               </button>
