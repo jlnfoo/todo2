@@ -1,26 +1,16 @@
 import React, { ChangeEvent, useState } from "react";
 import "./App.css";
 
-import { mockTaskList } from "./mockData";
-
 type MyTask = {
   id?: number; // number | undefined
   taskName: string;
 };
 
-// what was done
-//1. state of taskList was previously set to mockTaskList, it is now an empty array
-//2. state for id set to 0
-//3. setId added to onClick function at "add task" button
-
-//TO FIX
-// 1. when new items are added to todolist, the todolist arr displayed in console is always short of 1 - the latest added task
-
 const App = () => {
   const [taskList, setTaskList] = React.useState<MyTask[]>([]);
   const [task, setTask] = useState("");
   const [id, setId] = useState(0);
-  const newMainList: MyTask[] = [];
+  const [completedList, setCompletedList] = React.useState<MyTask[]>([]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setTask(event.target.value);
@@ -30,10 +20,14 @@ const App = () => {
     const newTask = { id: id, taskName: task };
     setTaskList([...taskList, newTask]);
     setTask("");
+    setId(id + 1);
     console.log(taskList); //when new tasks are added, the latest task obj is not displayed
   };
 
+  //todo -> completed
   const shiftDown = (taskId: number | undefined) => {
+    const newMainList: MyTask[] = [];
+
     // if (taskId === undefined) return;
     let removedItem;
 
@@ -51,30 +45,36 @@ const App = () => {
         newMainList.push(myCurrentTask);
       }
     }
-    // if object matches taskId, we give it a new var name of removedItem, then push this removedItem to end of newMainList
+    setTaskList(newMainList);
+
+    // if object matches taskId, we give it a new var name of removedItem, then push this removedItem to completedList
     if (removedItem) {
-      newMainList.push(removedItem);
+      completedList.unshift(removedItem);
     }
 
-    setTaskList(newMainList);
+    setCompletedList(completedList);
   };
 
+  //completed -> todo
   const shiftUp = (taskId: number | undefined) => {
+    const newCompletedList: MyTask[] = [];
+
     // if (taskId === undefined) return;
     let removed;
 
-    for (let j = 0; j < taskList.length; j++) {
-      if (taskList[j].id === taskId) {
-        removed = taskList[j];
+    for (let j = 0; j < completedList.length; j++) {
+      if (completedList[j].id === taskId) {
+        removed = completedList[j];
       } else {
-        newMainList.push(taskList[j]);
+        newCompletedList.push(completedList[j]);
       }
     }
+    setCompletedList(newCompletedList);
 
     if (removed) {
-      newMainList.unshift(removed);
+      taskList.push(removed);
     }
-    setTaskList(newMainList);
+    setTaskList(taskList);
   };
 
   return (
@@ -89,7 +89,6 @@ const App = () => {
       <button
         onClick={() => {
           addTask();
-          setId(id + 1);
         }}
       >
         Add
@@ -100,8 +99,17 @@ const App = () => {
         {taskList.map((task) => (
           <li>
             {task.taskName}
-            <button onClick={() => shiftUp(task.id)}>Up</button>
             <button onClick={() => shiftDown(task.id)}>Down</button>
+          </li>
+        ))}
+      </ul>
+
+      <h1>Completed List</h1>
+      <ul>
+        {completedList.map((task) => (
+          <li>
+            {task.taskName}
+            <button onClick={() => shiftUp(task.id)}>Up</button>
           </li>
         ))}
       </ul>
