@@ -1,8 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import "./App.css";
 
-import { mockTaskList } from "./mockData";
-
 type MyTask = {
   id?: number; // number | undefined
   taskName: string;
@@ -72,7 +70,7 @@ const App = () => {
       console.log(completedList);
     }
 
-    setCompletedList(completedList); //is this part wrong? completedlist returns removed item in console but does not display on the app
+    setCompletedList(completedList);
   };
 
   //completed -> todo
@@ -116,7 +114,6 @@ const App = () => {
         {taskList.map((task) => (
           <li>
             {task.taskName}
-            <button onClick={() => shiftUp(task.id)}>Up</button>
             <button onClick={() => shiftDown(task.id)}>Down</button>
           </li>
         ))}
@@ -124,9 +121,11 @@ const App = () => {
 
       <h1>Completed List</h1>
       <ul>
-        {completedList.map((task) => {
-          <li>{task.taskName}</li>;
-        })}
+        {completedList.map((task) => (
+          <li>
+            {task.taskName} <button onClick={() => shiftUp(task.id)}>Up</button>
+          </li>
+        ))}
       </ul>
     </div>
   );
