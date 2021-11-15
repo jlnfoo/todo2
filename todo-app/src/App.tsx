@@ -6,22 +6,6 @@ type MyTask = {
   taskName: string;
 };
 
-/*
-TODO
-
-DONE 1. created completedList state, set to empty arr
-
-DONE SHIFTDOWN - MOVE ITEM FROM TODO TO COMPLETED
-1. when down button is clicked, task will shift from todo list to completed list -> todo list should only have down button
-- get index of task , remove the task, push the task to completedlist
-2. need to update BOTH todo list and completed list
-
-SHIFTUP - MOVE ITEM FROM COMPLETED TO TODO
-1. when up button is clicked, task will shift from completed list to todo list -> completed list should only have up button
-- get index of task , remove the task, unshift (or push should work too?) the task to todolist
-2. need to update BOTH todo list and completed list
-*/
-
 const App = () => {
   const [taskList, setTaskList] = React.useState<MyTask[]>([]);
   const [task, setTask] = useState("");
