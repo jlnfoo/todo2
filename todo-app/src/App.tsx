@@ -11,7 +11,7 @@ TODO
 
 DONE 1. created completedList state, set to empty arr
 
-SHIFTDOWN - MOVE ITEM FROM TODO TO COMPLETED
+DONE SHIFTDOWN - MOVE ITEM FROM TODO TO COMPLETED
 1. when down button is clicked, task will shift from todo list to completed list -> todo list should only have down button
 - get index of task , remove the task, push the task to completedlist
 2. need to update BOTH todo list and completed list
@@ -27,7 +27,6 @@ const App = () => {
   const [task, setTask] = useState("");
   const [id, setId] = useState(0);
   const [completedList, setCompletedList] = React.useState<MyTask[]>([]);
-  const newMainList: MyTask[] = [];
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setTask(event.target.value);
@@ -43,6 +42,8 @@ const App = () => {
 
   //todo -> completed
   const shiftDown = (taskId: number | undefined) => {
+    const newMainList: MyTask[] = [];
+
     // if (taskId === undefined) return;
     let removedItem;
 
@@ -55,19 +56,16 @@ const App = () => {
       if (myCurrentTask.id === taskId) {
         //give that object a new var name
         removedItem = myCurrentTask;
-        console.log(myCurrentTask);
       } else {
         //if id of object doesnt match taskId, push that object to newMainList
         newMainList.push(myCurrentTask);
-        console.log(newMainList);
       }
     }
     setTaskList(newMainList);
 
     // if object matches taskId, we give it a new var name of removedItem, then push this removedItem to completedList
     if (removedItem) {
-      completedList.push(removedItem);
-      console.log(completedList);
+      completedList.unshift(removedItem);
     }
 
     setCompletedList(completedList);
@@ -75,21 +73,24 @@ const App = () => {
 
   //completed -> todo
   const shiftUp = (taskId: number | undefined) => {
+    const newCompletedList: MyTask[] = [];
+
     // if (taskId === undefined) return;
     let removed;
 
-    for (let j = 0; j < taskList.length; j++) {
-      if (taskList[j].id === taskId) {
-        removed = taskList[j];
+    for (let j = 0; j < completedList.length; j++) {
+      if (completedList[j].id === taskId) {
+        removed = completedList[j];
       } else {
-        newMainList.push(taskList[j]);
+        newCompletedList.push(completedList[j]);
       }
     }
+    setCompletedList(newCompletedList);
 
     if (removed) {
-      newMainList.unshift(removed);
+      taskList.push(removed);
     }
-    setTaskList(newMainList);
+    setTaskList(taskList);
   };
 
   return (
@@ -123,7 +124,8 @@ const App = () => {
       <ul>
         {completedList.map((task) => (
           <li>
-            {task.taskName} <button onClick={() => shiftUp(task.id)}>Up</button>
+            {task.taskName}
+            <button onClick={() => shiftUp(task.id)}>Up</button>
           </li>
         ))}
       </ul>
