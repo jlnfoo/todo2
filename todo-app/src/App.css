@@ -2,8 +2,70 @@
   text-align: center;
 }
 
-.strike {
-  text-decoration: line-through;
+.todolist {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.addBtn {
+  height: 40px;
+  padding: 0 15px;
+}
+
+.btn {
+  background-color: #b3695edc;
+  border: none;
+  border-radius: 3px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+ul li::before {
+  color: #eed7c5;
+}
+
+h1,
+h2 {
+  color: #571d14;
+}
+
+.btn:hover {
+  background-color: #cca5a1;
+}
+
+.shiftBtn {
+  margin: 10px 0 10px 40px;
+  width: 100px;
+  padding: 5px;
+}
+
+input {
+  border-radius: 3px;
+  border: none;
+  width: 400px;
+  height: 20px;
+  padding: 10px;
+  margin-right: 20px;
+  font-size: 16px;
+  color: #571d14;
+}
+
+::placeholder {
+  font-size: 16px;
+  color: #e0c4c1;
+}
+
+.appContent {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  margin-top: 150px;
 }
 
 .App-logo {
