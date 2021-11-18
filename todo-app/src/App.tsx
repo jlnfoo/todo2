@@ -6,11 +6,6 @@ type MyTask = {
   taskName: string;
 };
 
-// Each tasks will have 3 buttons
-// - send to bottom of current list
-// - send to top of current list
-// - mark as completed or incomplete - if completed - goes to completed list, if incomplete goes back todo list
-
 const App = () => {
   const [taskList, setTaskList] = React.useState<MyTask[]>([]);
   const [task, setTask] = useState("");
@@ -29,9 +24,45 @@ const App = () => {
     console.log(taskList); //when new tasks are added, the latest task obj is not displayed
   };
 
-  const shiftUpTodoList = (taskId: number | undefined) => {};
-  const shiftUpCompletedList = (taskId: number | undefined) => {};
+  //SHIFT UP WITHIN TODO LIST
+  const shiftUpTodoList = (taskId: number | undefined) => {
+    let removedItem;
+    const newTodoList: MyTask[] = [];
 
+    for (let i = 0; i < taskList.length; i++) {
+      if (taskList[i].id === taskId) {
+        removedItem = taskList[i];
+      } else {
+        newTodoList.push(taskList[i]);
+      }
+    }
+    if (removedItem) {
+      newTodoList.unshift(removedItem);
+    }
+    setTaskList(newTodoList);
+  };
+
+  //SHIFT UP WITHIN COMPLETED LIST
+  const shiftUpCompletedList = (taskId: number | undefined) => {
+    let removedItem;
+    const anotherCompletedList: MyTask[] = [];
+
+    for (let i = 0; i < completedList.length; i++) {
+      if (completedList[i].id === taskId) {
+        removedItem = completedList[i];
+      } else {
+        anotherCompletedList.push(completedList[i]);
+      }
+    }
+
+    if (removedItem) {
+      anotherCompletedList.unshift(removedItem);
+    }
+
+    setCompletedList(anotherCompletedList);
+  };
+
+  //SHIFT DOWN TODO LIST
   const shiftDownTodoList = (taskId: number | undefined) => {
     const updatedTodoList: MyTask[] = [];
 
@@ -51,6 +82,7 @@ const App = () => {
     setTaskList(updatedTodoList);
   };
 
+  //SHIFT DOWN COMPLETED LIST
   const shiftDownCompletedList = (taskId: number | undefined) => {
     const updatedCompletedList: MyTask[] = [];
 
@@ -70,7 +102,7 @@ const App = () => {
     setCompletedList(updatedCompletedList);
   };
 
-  //todo -> completed
+  //SHIFT FROM TODO -> COMPLETED
   const shiftToComplete = (taskId: number | undefined) => {
     const newMainList: MyTask[] = [];
 
@@ -101,7 +133,7 @@ const App = () => {
     setCompletedList(completedList);
   };
 
-  //completed -> todo
+  //SHIFT FROM COMPLETED -> TODO
   const shiftToTodo = (taskId: number | undefined) => {
     const newCompletedList: MyTask[] = [];
 
@@ -194,7 +226,7 @@ const App = () => {
                 className="shiftBtn btn"
                 onClick={() => shiftToTodo(task.id)}
               >
-                Incomplete?
+                Send to Todo List
               </button>
             </li>
           ))}
