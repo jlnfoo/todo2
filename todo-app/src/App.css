@@ -9,16 +9,18 @@
 }
 
 .addBtn {
-  height: 40px;
+  height: 34px;
+  width: 180px;
   padding: 0 15px;
 }
 
 .btn {
-  background-color: #b3695edc;
+  background-color: #f38375;
   border: none;
   border-radius: 3px;
   font-size: 15px;
   cursor: pointer;
+  height: 32px;
 }
 
 ul {
@@ -31,16 +33,17 @@ ul li::before {
 
 h1,
 h2 {
-  color: #571d14;
+  color: black;
+  font-size: 22px;
 }
 
 .btn:hover {
-  background-color: #cca5a1;
+  background-color: #db6657;
 }
 
 .shiftBtn {
   margin: 10px 0 10px 40px;
-  width: 200px;
+  width: 180px;
   padding: 5px;
 }
 
@@ -48,16 +51,16 @@ input {
   border-radius: 3px;
   border: none;
   width: 400px;
-  height: 20px;
+  height: 13px;
   padding: 10px;
-  margin-right: 20px;
-  font-size: 16px;
-  color: #571d14;
+  margin: 20px 20px 0 0;
+  font-size: 15px;
+  color: #db6657;
 }
 
 ::placeholder {
   font-size: 16px;
-  color: #e0c4c1;
+  color: #ebbcc4;
 }
 
 .appContent {
@@ -65,7 +68,7 @@ input {
   flex-direction: column;
   text-align: center;
   justify-content: center;
-  margin-top: 150px;
+  margin-top: 50px;
 }
 
 .App-logo {
