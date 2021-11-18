@@ -176,7 +176,7 @@ const App = () => {
       </div>
 
       <div className="todolist">
-        <h1>My Todo List</h1>
+        <h1>Todo List</h1>
         <ul>
           {taskList.map((task) => (
             <li>
@@ -205,7 +205,7 @@ const App = () => {
       </div>
 
       <div className="todolist">
-        <h1>Completed List</h1>
+        <h1>Completed Task List</h1>
         <ul>
           {completedList.map((task) => (
             <li>
