@@ -1,5 +1,7 @@
-import React, { ChangeEvent, useState } from "react";
+import React from "react";
 import "./App.css";
+import { AddTaskForm } from "./Components/AddTaskForm/AddTaskForm";
+import { TodoList } from "./Components/TodoList/TodoList";
 
 type MyTask = {
   id?: number; // number | undefined
@@ -8,39 +10,7 @@ type MyTask = {
 
 const App = () => {
   const [taskList, setTaskList] = React.useState<MyTask[]>([]);
-  const [task, setTask] = useState("");
-  const [id, setId] = useState(0);
   const [completedList, setCompletedList] = React.useState<MyTask[]>([]);
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setTask(event.target.value);
-  };
-
-  const addTask = (): void => {
-    const newTask = { id: id, taskName: task };
-    setTaskList([...taskList, newTask]);
-    setTask("");
-    setId(id + 1);
-    console.log(taskList); //when new tasks are added, the latest task obj is not displayed
-  };
-
-  //SHIFT UP WITHIN TODO LIST
-  const shiftUpTodoList = (taskId: number | undefined) => {
-    let removedItem;
-    const newTodoList: MyTask[] = [];
-
-    for (let i = 0; i < taskList.length; i++) {
-      if (taskList[i].id === taskId) {
-        removedItem = taskList[i];
-      } else {
-        newTodoList.push(taskList[i]);
-      }
-    }
-    if (removedItem) {
-      newTodoList.unshift(removedItem);
-    }
-    setTaskList(newTodoList);
-  };
 
   //SHIFT UP WITHIN COMPLETED LIST
   const shiftUpCompletedList = (taskId: number | undefined) => {
@@ -60,26 +30,6 @@ const App = () => {
     }
 
     setCompletedList(anotherCompletedList);
-  };
-
-  //SHIFT DOWN TODO LIST
-  const shiftDownTodoList = (taskId: number | undefined) => {
-    const updatedTodoList: MyTask[] = [];
-
-    let removedItem;
-    for (let i = 0; i < taskList.length; i++) {
-      const myCurrentTask = taskList[i];
-      if (myCurrentTask.id === taskId) {
-        removedItem = myCurrentTask;
-      } else {
-        updatedTodoList.push(myCurrentTask);
-      }
-    }
-    //
-    if (removedItem) {
-      updatedTodoList.push(removedItem);
-    }
-    setTaskList(updatedTodoList);
   };
 
   //SHIFT DOWN COMPLETED LIST
@@ -157,52 +107,8 @@ const App = () => {
 
   return (
     <div className="appContent">
-      <div className="addTask">
-        <h1>Add Tasks</h1>
-        <input
-          type="text"
-          placeholder="eat homework, walk cat, feed doge...."
-          value={task}
-          onChange={handleChange}
-        />
-        <button
-          className="addBtn btn"
-          onClick={() => {
-            addTask();
-          }}
-        >
-          Add
-        </button>
-      </div>
-
-      <div className="todolist">
-        <h1>Todo List</h1>
-        <ul>
-          {taskList.map((task) => (
-            <li>
-              {task.taskName}
-              <button
-                className="shiftBtn btn"
-                onClick={() => shiftUpTodoList(task.id)}
-              >
-                Shift Task Up
-              </button>
-              <button
-                className="shiftBtn btn"
-                onClick={() => shiftDownTodoList(task.id)}
-              >
-                Shift Task Down
-              </button>
-              <button
-                className="shiftBtn btn"
-                onClick={() => shiftToComplete(task.id)}
-              >
-                Mark as complete
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <AddTaskForm />
+      <TodoList />
 
       <div className="todolist">
         <h1>Completed Task List</h1>
