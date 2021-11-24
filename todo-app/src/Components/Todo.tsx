@@ -11,18 +11,6 @@ const Todo = () => {
   const [id, setId] = useState(0);
   const [completedList, setCompletedList] = React.useState<MyTask[]>([]);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setTask(event.target.value);
-  };
-
-  const addTask = (): void => {
-    const newTask = { id: id, taskName: task };
-    setTaskList([...taskList, newTask]);
-    setTask("");
-    setId(id + 1);
-    console.log(taskList); //when new tasks are added, the latest task obj is not displayed
-  };
-
   //SHIFT UP WITHIN TODO LIST
   const shiftUpTodoList = (taskId: number | undefined) => {
     let removedItem;
@@ -156,24 +144,6 @@ const Todo = () => {
 
   return (
     <div className="appContent">
-      <div className="addTask">
-        <h1>Add Tasks</h1>
-        <input
-          type="text"
-          placeholder="eat homework, walk cat, feed doge...."
-          value={task}
-          onChange={handleChange}
-        />
-        <button
-          className="addBtn btn"
-          onClick={() => {
-            addTask();
-          }}
-        >
-          Add
-        </button>
-      </div>
-
       <div className="todolist">
         <h1>Todo List</h1>
         <ul>
